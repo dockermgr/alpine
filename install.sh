@@ -240,7 +240,7 @@ done
 SET_DEV=""
 for dev in $ADDITION_DEVICES; do
   if [ -n "$dev" ]; then
-    echo "$dev" | grep ':' || dev="$dev:$dev"
+    echo "$dev" | grep -q ':' || dev="$dev:$dev"
     SET_DEV+="--device $dev "
   fi
 done
@@ -248,7 +248,7 @@ done
 SET_MNT=""
 for mnt in $ADDITIONAL_MOUNTS; do
   if [ -n "$mnt" ]; then
-    echo "$mnt" | grep ':' || port="$mnt:$mnt"
+    echo "$mnt" | grep -q ':' || port="$mnt:$mnt"
     SET_MNT+="--volume $mnt "
   fi
 done
@@ -256,7 +256,7 @@ done
 SET_PORT=""
 for port in $SERVER_WEB_PORT $SERVER_PORT_ADD_CUSTOM; do
   if [ -n "$port" ]; then
-    echo "$port" | grep ':' || port="$port:$port"
+    echo "$port" | grep -q ':' || port="$port:$port"
     SET_PORT+="--publish $DEFINE_LISTEN:$port "
   fi
 done
